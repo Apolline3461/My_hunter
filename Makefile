@@ -5,7 +5,8 @@
 ## Makefile
 ##
 
-SRC	=	main.c
+SRC	=	main.c \
+		my_duck.c
 
 NAME	=	my_hunter
 

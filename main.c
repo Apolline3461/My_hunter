@@ -5,62 +5,42 @@
 ** main.c
 */
 
+#include <unistd.h>
 #include <SFML/Graphics.h>
 #include <SFML/System.h>
-#include "include/hunter.h"
+#include "./include/hunter.h"
+#include "./include/printf.h"
 
-void move_rect(sfIntRect *rect, int offset, int max_value)
+void display_backgr(duck_t *duck)
 {
-    rect->left = (rect->left + offset);
-    if (rect->left >= max_value)
-        rect->left = 0;
+    back_t back;
+
+    back.sprite_back = sfSprite_create();
+    back.background = sfTexture_createFromFile("./img/background.png", NULL);
+    sfSprite_setTexture(back.sprite_back, back.background, sfFalse);
+    sfRenderWindow_clear(duck->window, sfTransparent);
+    sfRenderWindow_drawSprite(duck->window, back.sprite_back, NULL);
 }
 
-void display_sprite(sfRenderWindow *window, sfSprite *sprite)
+void open_win(duck_t *duck, sfIntRect rect)
 {
-    sfRenderWindow_drawSprite(window, sprite, NULL);
-}
-
-void analyse_events(sfRenderWindow *window, sfEvent event)
-{
-    while (sfRenderWindow_pollEvent(window, &event)) {
-        if (event.type == sfEvtClosed)
-            sfRenderWindow_close(window);
+    while (sfRenderWindow_isOpen(duck->window)) {
+        analyse_events(duck->window, duck->event);
+        display_backgr(duck);
+        display_duck(duck, &rect);
+        sfRenderWindow_display(duck->window);
     }
 }
 
-void display_duck(duck_t duck)
-{
-    while (sfRenderWindow_isOpen(duck.window)) {
-        analyse_events(duck.window, duck.event);
-        sfSprite_setTextureRect(duck.sprite, (sfIntRect){0, 0, 110, 110});
-        sfRenderWindow_clear(duck.window, sfBlack);
-        display_sprite(duck.window, duck.sprite);
-        duck.time = sfClock_getElapsedTime(duck.clock);
-        if (sfTime_asMilliseconds(duck.time) >= 200) {
-            move_rect(&(sfIntRect){0, 0, 110, 110}, 110, 330);
-            sfClock_restart(duck.clock);
-        }
-        sfRenderWindow_display(duck.window);
-    }
-}
-
-duck_t init_duck_struct(duck_t duck, sfVideoMode video_mode)
-{
-    duck.sprite = sfSprite_create();
-    duck.duck = sfTexture_createFromFile("./img/duck.png", NULL);
-    duck.clock = sfClock_create();
-    duck.window = sfRenderWindow_create(video_mode, "My Hunter", sfClose | sfResize, NULL);
-
-    return duck;
-}
-
-int main()
+int main(int argc, char **argv)
 {
     duck_t duck;
-    duck = init_duck_struct(duck, (sfVideoMode){720, 480, 32});
-    sfRenderWindow_setFramerateLimit(duck.window, 120);
+    sfIntRect rect = {0, 0, 110, 110};
+    (void)argc;
+    (void)argv;
 
-    sfSprite_setTexture(duck.sprite, duck.duck, sfFalse);
-    display_duck(duck);
+    duck = init_duck_struct(duck, (sfVideoMode){800, 600, 32});
+    sfRenderWindow_setFramerateLimit(duck.window, 120);
+    open_win(&duck, rect);
+    return 0;
 }
