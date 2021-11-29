@@ -30,7 +30,7 @@
     }back_t;
 
     duck_t init_duck_struct(duck_t duck, sfVideoMode video_mode);
-    void analyse_events(sfRenderWindow *window, sfEvent event);
+    void analyse_events(duck_t *duck);
     void display_duck(duck_t *duck, sfIntRect *rect);
     int my_strcmp(char const *s1, char const *s2);
 
