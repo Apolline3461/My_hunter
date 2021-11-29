@@ -11,6 +11,9 @@
     #include <SFML/System.h>
     #include "printf.h"
 
+    #define WIN "my_hunter"
+    #define create_win sfRenderWindow_create
+
     typedef struct duck_s
     {
         sfTime time;

@@ -61,7 +61,7 @@ duck_t init_duck_struct(duck_t duck, sfVideoMode video_mode)
     duck.sprite = sfSprite_create();
     duck.duck = sfTexture_createFromFile("./img/duck.png", NULL);
     duck.clock = sfClock_create();
-    duck.window = sfRenderWindow_create(video_mode, "My Hunter", sfClose | sfResize, NULL);
+    duck.window = create_win(video_mode, WIN, sfClose | sfResize, NULL);
 
     return duck;
 }
