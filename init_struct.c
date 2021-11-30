@@ -12,6 +12,7 @@ duck_t init_duck_struct(duck_t duck)
     duck.sprite = sfSprite_create();
     duck.duck = sfTexture_createFromFile("./img/duck.png", NULL);
     duck.clock = sfClock_create();
+    duck.score = 0;
 
     return duck;
 }

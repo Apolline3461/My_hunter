@@ -14,6 +14,8 @@
 
     #define WIN "my_hunter"
     #define create_win sfRenderWindow_create
+    #define button_press sfMouse_isButtonPressed
+    #define corresp sfFloatRect_contains
 
     typedef struct option_s
     {
@@ -26,6 +28,7 @@
 
     typedef struct duck_s
     {
+        int score;
         sfTime time;
         sfClock *clock;
         sfSprite *sprite;
@@ -40,5 +43,6 @@
     int my_strcmp(char const *s1, char const *s2);
     opt_t init_option_struct(opt_t opt, sfVideoMode video_mode);
     void display_duck(duck_t *duck, sfIntRect *rect, opt_t *opt);
+    int count_score(int score);
 
 #endif

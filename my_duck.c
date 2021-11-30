@@ -21,11 +21,14 @@ void move_rect(sfIntRect *rect, int offset, int max_value)
 
 void click_to_kill(duck_t *duck, opt_t *opt)
 {
-    sfVector2i pos_mouse = sfMouse_getPositionRenderWindow(opt->window);
-    sfFloatRect rect_duck = sfSprite_getGlobalBounds(duck->sprite);
+    sfVector2i p_mouse = sfMouse_getPositionRenderWindow(opt->window);
+    sfFloatRect rec_d = sfSprite_getGlobalBounds(duck->sprite);
 
-    if (sfFloatRect_contains(&rect_duck, pos_mouse.x, pos_mouse.y) && sfMouse_isButtonPressed(sfMouseLeft))
+    if (corresp(&rec_d, p_mouse.x, p_mouse.y) && button_press(sfMouseLeft)) {
         sfSprite_setPosition(duck->sprite, (sfVector2f){-250, rand() % 490});
+        duck->score = count_score(duck->score);
+        my_printf("%d\n", duck->score);
+    }
     sfSound_setBuffer(opt->kill, opt->kill_buf);
     sfSound_play(opt->kill);
 }
