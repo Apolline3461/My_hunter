@@ -8,29 +8,37 @@
 #include <time.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <SFML/Audio.h>
 #include <SFML/System.h>
 #include <SFML/Graphics.h>
 #include "./include/hunter.h"
 #include "./include/printf.h"
 
-void display_backgr(duck_t *duck)
+void destroy_my_sprite(duck_t *duck, opt_t *op)
 {
-    back_t back;
-
-    back.sprite_back = sfSprite_create();
-    back.background = sfTexture_createFromFile("./img/background.png", NULL);
-    sfSprite_setTexture(back.sprite_back, back.background, sfFalse);
-    sfRenderWindow_clear(duck->window, sfTransparent);
-    sfRenderWindow_drawSprite(duck->window, back.sprite_back, NULL);
+    sfSprite_destroy(duck->sprite);
+    sfSprite_destroy(duck->sprite_back);
+    sfSound_destroy(op->kill);
+    sfSoundBuffer_destroy(op->kill_buf);
 }
 
-void open_win(duck_t *duck, sfIntRect rect)
+void display_backgr(opt_t *option, duck_t *duck)
 {
-    while (sfRenderWindow_isOpen(duck->window)) {
-        analyse_events(duck);
-        display_backgr(duck);
-        display_duck(duck, &rect);
-        sfRenderWindow_display(duck->window);
+    duck->sprite_back = sfSprite_create();
+    duck->background = sfTexture_createFromFile("./img/background.png", NULL);
+    sfSprite_setTexture(duck->sprite_back, duck->background, sfFalse);
+    sfRenderWindow_clear(option->window, sfTransparent);
+    sfRenderWindow_drawSprite(option->window, duck->sprite_back, NULL);
+}
+
+void open_win(opt_t *option, sfIntRect rect, duck_t *duck)
+{
+
+    while (sfRenderWindow_isOpen(option->window)) {
+        analyse_events(option, duck);
+        display_backgr(option, duck);
+        display_duck(duck, &rect, option);
+        sfRenderWindow_display(option->window);
     }
 }
 
@@ -46,6 +54,7 @@ void help_option()
 int main(int argc, char **argv)
 {
     duck_t duck;
+    opt_t option;
     sfIntRect rect = {0, 0, 110, 110};
     srand(time(0));
 
@@ -53,8 +62,10 @@ int main(int argc, char **argv)
         help_option();
         return 0;
     }
-    duck = init_duck_struct(duck, (sfVideoMode){800, 600, 32});
-    sfRenderWindow_setFramerateLimit(duck.window, 120);
-    open_win(&duck, rect);
+    duck = init_duck_struct(duck);
+    option = init_option_struct(option, (sfVideoMode){800, 600, 32});
+    sfRenderWindow_setFramerateLimit(option.window, 30);
+    open_win(&option, rect, &duck);
+    destroy_my_sprite(&duck, &option);
     return 0;
 }

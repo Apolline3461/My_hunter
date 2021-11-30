@@ -6,7 +6,8 @@
 ##
 
 SRC	=	main.c \
-		my_duck.c
+		my_duck.c \
+		init_struct.c
 
 NAME	=	my_hunter
 
@@ -16,7 +17,7 @@ LFLAGS	=	-L lib/ -lmy
 
 IFLAGS	=	-I ./include
 
-CSFFLAGS	=	-lcsfml-graphics -lcsfml-system
+CSFFLAGS	=	-lcsfml-graphics -lcsfml-system -lcsfml-audio -lcsfml-window
 
 all:
 	make -C ./lib/ all
