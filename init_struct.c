@@ -28,6 +28,9 @@ opt_t init_option_struct(opt_t opt, sfVideoMode video_mode)
     opt.font = sfFont_createFromFile("./fonts/valuoldcaps.ttf");
     opt.score = sfText_create();
     opt.end_text = sfText_create();
+    opt.target_sprite = sfSprite_create();
+    opt.target = setT_fromfile("./img/red_target.png", NULL);
+    setTexture(opt.target_sprite, opt.target, sfFalse);
     sfText_setFont(opt.score, opt.font);
     sfText_setFont(opt.end_text, opt.font);
     sfText_setPosition(opt.score, (sfVector2f){350, 7});

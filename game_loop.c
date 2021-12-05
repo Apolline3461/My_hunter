@@ -19,11 +19,13 @@ void game_loop(duck_t *duck, opt_t *option)
     sfText_setString(option->score, score);
     sfRenderWindow_drawText(option->window, option->score, NULL);
     free(score);
+    sfRenderWindow_drawSprite(option->window, option->target_sprite, NULL);
     sfRenderWindow_display(option->window);
 }
 
 void end_loop(opt_t *opt)
 {
+    sfRenderWindow_setMouseCursorVisible(opt->window, sfTrue);
     sfText_setPosition(opt->score, (sfVector2f){380, 300});
     sfText_setCharacterSize(opt->score, 40);
     while (sfRenderWindow_pollEvent(opt->window, &opt->event)) {

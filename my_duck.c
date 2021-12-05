@@ -35,6 +35,9 @@ void click_to_kill(duck_t *duck, opt_t *opt)
 void analyse_events(opt_t *opt, duck_t *duck)
 {
     while (sfRenderWindow_pollEvent(opt->window, &opt->event)) {
+        sfRenderWindow_setMouseCursorVisible(opt->window, sfFalse);
+        sfVector2i pos_mouse = sfMouse_getPositionRenderWindow(opt->window);
+        sfSprite_setPosition(opt->target_sprite, (sfVector2f) {pos_mouse.x -25, pos_mouse.y -25});
         if (opt->event.type == sfEvtClosed)
             sfRenderWindow_close(opt->window);
         if (sfMouse_isButtonPressed(sfMouseLeft)) {

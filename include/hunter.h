@@ -38,6 +38,8 @@
         sfText *score;
         sfText *end_text;
         pict_t pic;
+        sfSprite *target_sprite;
+        sfTexture *target;
 
     }opt_t;
 

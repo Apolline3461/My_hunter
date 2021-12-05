@@ -22,6 +22,7 @@ void destroy_my_sprite(duck_t *duck, opt_t *op)
     sfSoundBuffer_destroy(op->kill_buf);
     sfFont_destroy(op->font);
     sfText_destroy(op->score);
+    sfSprite_destroy(op->target_sprite);
 }
 
 void display_backgr(opt_t *option)
