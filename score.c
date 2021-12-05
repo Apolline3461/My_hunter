@@ -5,6 +5,8 @@
 ** score.c
 */
 
+#include <stdlib.h>
+#include <stdio.h>
 #include "./include/printf.h"
 
 int count_score(int score)
@@ -13,12 +15,31 @@ int count_score(int score)
     return score;
 }
 
+int len_of_int(int nb_score)
+{
+    int len;
 
-// chaque fois qu'on touche un canard + 5
-// fin du jeu avec un score total de 30
+    if (nb_score == 0)
+        return 1;
+    for (len = 0; nb_score > 0; len++)
+        nb_score = nb_score / 10;
+    return len;
+}
+
+char *int_to_string(int score)
+{
+    int i = 0;
+    int len = len_of_int(score) + 1;
+    char *str = malloc(sizeof(char) * len);
+
+    for (; i < len - 1; i++) {
+        str[i] = score % 10 + 48;
+        score = score / 10;
+    }
+    str[i] = '\0';
+    my_revstr(str);
+    return str;
+}
 
 // afficher cadre pour mettre le score
 // afficher compteur
-
-// arrêter jeu: mettre filtre sur image et faire appaître un message gagner
-// si au bout de 3min score != 30 perdu
