@@ -20,6 +20,9 @@
     #define setT_fromfile sfTexture_createFromFile
     #define setPosS sfSprite_setPosition
     #define spritetar opt->target_sprite
+    #define set_str sfText_setString
+    #define txt opt->structM.quit
+    #define black_backgr opt->pic.sprite_black_backgr
 
     typedef struct menu_s
     {
@@ -28,6 +31,7 @@
         sfFont *font_menu;
         sfText *enter;
         sfText *quit;
+        sfText *restart;
 
     } menu_t;
 
@@ -83,5 +87,7 @@
     void display_backgr(opt_t *option);
     void display_menu(opt_t *op);
     void display_backgr(opt_t *option);
+    // void set_text_quit(menu_t menu);
+    // void set_front_and_text(opt_t opt);
 
 #endif

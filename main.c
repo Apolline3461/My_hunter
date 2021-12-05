@@ -27,6 +27,7 @@ void destroy_my_sprite(duck_t *duck, opt_t *op)
     sfFont_destroy(op->structM.font_menu);
     sfText_destroy(op->structM.enter);
     sfText_destroy(op->structM.quit);
+    sfText_destroy(op->structM.restart);
 }
 
 void open_win(opt_t *option, duck_t *duck)

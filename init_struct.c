@@ -16,7 +16,6 @@ duck_t init_duck_struct(duck_t duck)
     duck.life = 3;
     duck.speed = 10;
     duck.rect = (sfIntRect){0, 0, 110, 110};
-
     return duck;
 }
 
@@ -30,8 +29,10 @@ menu_t init_menu_struct(menu_t menu)
     setTexture(menu.sprite_menu, menu.menu, sfFalse);
     sfText_setFont(menu.enter, menu.font_menu);
     sfText_setFont(menu.quit, menu.font_menu);
-    sfText_setPosition(menu.enter, (sfVector2f){250, 180});
-    sfText_setPosition(menu.quit, (sfVector2f){300, 350});
+    sfText_setPosition(menu.enter, (sfVector2f){200, 190});
+    sfText_setPosition(menu.quit, (sfVector2f){220, 350});
+    sfText_setColor(menu.enter, sfBlue);
+    sfText_setColor(menu.quit, sfBlack);
     return menu;
 }
 
@@ -50,7 +51,7 @@ void set_front_and_text(opt_t opt)
     setTexture(opt.target_sprite, opt.target, sfFalse);
     sfText_setFont(opt.score, opt.font);
     sfText_setFont(opt.end_text, opt.font);
-    sfText_setPosition(opt.score, (sfVector2f){350, 7});
+    sfText_setPosition(opt.score, (sfVector2f){360, 7});
     sfText_setPosition(opt.end_text, (sfVector2f){32, 250});
     sfText_setCharacterSize(opt.end_text, 45);
     sfText_setCharacterSize(opt.score, 30);

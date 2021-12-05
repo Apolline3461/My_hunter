@@ -48,9 +48,11 @@ void end_loop(opt_t *opt, duck_t *duck)
     sfText_setCharacterSize(opt->score, 40);
     analyse_event_of_end(opt, duck);
     sfRenderWindow_clear(opt->window, sfTransparent);
-    sfRenderWindow_drawSprite(opt->window, opt->pic.sprite_black_backgr, NULL);
-    sfText_setString(opt->end_text, "Well done ! Your score is:");
+    sfRenderWindow_drawSprite(opt->window, black_backgr, NULL);
+    set_str(opt->end_text, "Well done ! Your score is:");
+    set_str(txt, "Press enter to restart\n                    or\n        Press Q to exit");
     sfRenderWindow_drawText(opt->window, opt->end_text, NULL);
+    sfRenderWindow_drawText(opt->window, txt, NULL);
     sfRenderWindow_drawText(opt->window, opt->score, NULL);
     sfRenderWindow_display(opt->window);
 }

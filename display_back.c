@@ -11,7 +11,9 @@
 
 void display_menu(opt_t *op)
 {
+    sfText_setString(op->structM.enter, "Press enter to start playing");
     sfRenderWindow_drawSprite(op->window, op->structM.sprite_menu, NULL);
+    sfRenderWindow_drawText(op->window, op->structM.enter, NULL);
     sfRenderWindow_display(op->window);
     while (sfRenderWindow_pollEvent(op->window, &op->event)) {
         if (op->event.type == sfEvtClosed)
@@ -20,7 +22,7 @@ void display_menu(opt_t *op)
             op->event.key.code == sfKeyEnter) {
             sfRenderWindow_clear(op->window, sfTransparent);
             op->menu = 1;
-            }
+        }
     }
 }
 
