@@ -10,8 +10,7 @@ SRC	=	main.c \
 		init_struct.c \
 		score.c \
 		game_loop.c \
-		display_back.c \
-		set_for_struct.c
+		display_back.c
 
 NAME	=	my_hunter
 
