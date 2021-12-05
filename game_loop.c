@@ -23,7 +23,7 @@ void game_loop(duck_t *duck, opt_t *option)
     sfRenderWindow_display(option->window);
 }
 
-void end_loop(opt_t *opt)
+void end_loop(opt_t *opt, duck_t *duck)
 {
     sfRenderWindow_setMouseCursorVisible(opt->window, sfTrue);
     sfText_setPosition(opt->score, (sfVector2f){380, 300});
@@ -31,7 +31,15 @@ void end_loop(opt_t *opt)
     while (sfRenderWindow_pollEvent(opt->window, &opt->event)) {
         if (opt->event.type == sfEvtClosed)
             sfRenderWindow_close(opt->window);
-        if (opt->event.type == sfEvtKeyPressed)
+        if (opt->event.type == sfEvtKeyPressed &&
+            opt->event.key.code == sfKeyEnter) {
+            sfText_setCharacterSize(opt->score, 30);
+            sfText_setPosition(opt->score, (sfVector2f){350, 7});
+            duck->life = 3;
+            duck->score = 0;
+        }
+        if (opt->event.type == sfEvtKeyPressed &&
+            opt->event.key.code == sfKeyQ)
             sfRenderWindow_close(opt->window);
     }
     sfRenderWindow_clear(opt->window, sfTransparent);

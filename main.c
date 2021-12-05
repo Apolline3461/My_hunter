@@ -38,7 +38,7 @@ void open_win(opt_t *option, duck_t *duck)
         if (duck->life != 0)
             game_loop(duck, option);
         else
-            end_loop(option);
+            end_loop(option, duck);
     }
 }
 

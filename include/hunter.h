@@ -18,6 +18,8 @@
     #define corresp sfFloatRect_contains
     #define setTexture sfSprite_setTexture
     #define setT_fromfile sfTexture_createFromFile
+    #define setPosS sfSprite_setPosition
+    #define spritetar opt->target_sprite
 
     typedef struct pictures_s
     {
@@ -66,7 +68,7 @@
     int count_score(int score);
     char *int_to_string(int score);
     void game_loop(duck_t *duck, opt_t *option);
-    void end_loop(opt_t *opt);
+    void end_loop(opt_t *opt, duck_t *duck);
     void display_backgr(opt_t *option);
 
 #endif
