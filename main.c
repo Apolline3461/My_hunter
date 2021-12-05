@@ -17,18 +17,18 @@
 void destroy_my_sprite(duck_t *duck, opt_t *op)
 {
     sfSprite_destroy(duck->sprite);
-    sfSprite_destroy(duck->sprite_back);
+    sfSprite_destroy(op->pic.sprite_back);
     sfSound_destroy(op->kill);
     sfSoundBuffer_destroy(op->kill_buf);
     sfFont_destroy(op->font);
     sfText_destroy(op->score);
 }
 
-void display_backgr(opt_t *option, duck_t *duck)
+void display_backgr(opt_t *option)
 {
-    sfSprite_setTexture(duck->sprite_back, duck->background, sfFalse);
+    setTexture(option->pic.sprite_back, option->pic.background, sfFalse);
     sfRenderWindow_clear(option->window, sfTransparent);
-    sfRenderWindow_drawSprite(option->window, duck->sprite_back, NULL);
+    sfRenderWindow_drawSprite(option->window, option->pic.sprite_back, NULL);
 }
 
 void open_win(opt_t *option, duck_t *duck)
@@ -41,14 +41,14 @@ void open_win(opt_t *option, duck_t *duck)
     }
 }
 
-void help_option()
+void help_option(void)
 {
     char *help = "\n   MY HUNTER:\n\nThe goal of the game";
     char *help1 = " is  to shoot the ducks that appear on the screen.\n";
     char *help2 = "To do this, use your mouse to click on the ducks.\n\n";
-    // char *help3 = "Becareful";
+    char *help3 = "             Becareful, you only have 3 lives...\n\n";
 
-    my_printf("%s%s%s", help, help1, help2);
+    my_printf("%s%s%s%s", help, help1, help2, help3);
 }
 
 int main(int argc, char **argv)

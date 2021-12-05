@@ -47,7 +47,7 @@ void display_duck(duck_t *duck, opt_t *opt)
     int speed = 10;
     sfVector2f pos_act = sfSprite_getPosition(duck->sprite);
 
-    sfSprite_setTexture(duck->sprite, duck->duck, sfFalse);
+    setTexture(duck->sprite, duck->duck, sfFalse);
     sfSprite_setTextureRect(duck->sprite, duck->rect);
     pos_act.x += speed;
     duck->time = sfClock_getElapsedTime(duck->clock);

@@ -40,6 +40,3 @@ char *int_to_string(int score)
     my_revstr(str);
     return str;
 }
-
-// afficher cadre pour mettre le score
-// afficher compteur

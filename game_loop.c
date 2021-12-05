@@ -13,7 +13,7 @@
 void game_loop(duck_t *duck, opt_t *option)
 {
     analyse_events(option, duck);
-    display_backgr(option, duck);
+    display_backgr(option);
     display_duck(duck, option);
     char *score = int_to_string(duck->score);
     sfText_setString(option->score, score);
@@ -33,7 +33,7 @@ void end_loop(opt_t *opt)
             sfRenderWindow_close(opt->window);
     }
     sfRenderWindow_clear(opt->window, sfTransparent);
-    sfText_setString(opt->end_text, "Well done! Your score is:");
+    sfText_setString(opt->end_text, "Well done ! Your score is:");
     sfRenderWindow_drawText(opt->window, opt->end_text, NULL);
     sfRenderWindow_drawText(opt->window, opt->score, NULL);
     sfRenderWindow_display(opt->window);

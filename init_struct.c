@@ -10,10 +10,8 @@
 duck_t init_duck_struct(duck_t duck)
 {
     duck.sprite = sfSprite_create();
-    duck.duck = sfTexture_createFromFile("./img/duck.png", NULL);
+    duck.duck = setT_fromfile("./img/duck.png", NULL);
     duck.clock = sfClock_create();
-    duck.sprite_back = sfSprite_create();
-    duck.background = sfTexture_createFromFile("./img/background.png", NULL);
     duck.score = 0;
     duck.life = 3;
     duck.rect = (sfIntRect){0, 0, 110, 110};
@@ -32,7 +30,17 @@ opt_t init_option_struct(opt_t opt, sfVideoMode video_mode)
     sfText_setFont(opt.score, opt.font);
     sfText_setFont(opt.end_text, opt.font);
     sfText_setPosition(opt.score, (sfVector2f){350, 5});
-    sfText_setPosition(opt.end_text, (sfVector2f){40, 250});
+    sfText_setPosition(opt.end_text, (sfVector2f){32, 250});
     sfText_setCharacterSize(opt.end_text, 45);
+    opt.pic = init_pictures_struct(opt.pic);
     return opt;
+}
+
+pict_t init_pictures_struct(pict_t pic)
+{
+    pic.sprite_back = sfSprite_create();
+    pic.background = setT_fromfile("./img/background.png", NULL);
+    pic.sprite_black_backgr = sfSprite_create();
+    pic.black_back = ("img/black_background.jpg", NULL);
+    return pic;
 }
