@@ -87,7 +87,7 @@
     void display_backgr(opt_t *option);
     void display_menu(opt_t *op);
     void display_backgr(opt_t *option);
-    // void set_text_quit(menu_t menu);
-    // void set_front_and_text(opt_t opt);
+    void set_text_quit(menu_t menu);
+    void set_front_and_text(opt_t opt);
 
 #endif
