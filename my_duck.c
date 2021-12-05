@@ -37,8 +37,10 @@ void analyse_events(opt_t *opt, duck_t *duck)
     while (sfRenderWindow_pollEvent(opt->window, &opt->event)) {
         if (opt->event.type == sfEvtClosed)
             sfRenderWindow_close(opt->window);
-        if (sfMouse_isButtonPressed(sfMouseLeft))
+        if (sfMouse_isButtonPressed(sfMouseLeft)) {
             click_to_kill(duck, opt);
+            duck->speed += 2;
+        }
     }
 }
 
@@ -58,6 +60,7 @@ void display_duck(duck_t *duck, opt_t *opt)
         duck->life--;
         pos_act.x = -50;
         pos_act.y = rand() % 490;
+        duck->speed = 10;
     }
     sfSprite_setPosition(duck->sprite, pos_act);
     sfRenderWindow_drawSprite(opt->window, duck->sprite, NULL);
