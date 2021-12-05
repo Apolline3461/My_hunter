@@ -44,12 +44,11 @@ void analyse_events(opt_t *opt, duck_t *duck)
 
 void display_duck(duck_t *duck, opt_t *opt)
 {
-    int speed = 10;
     sfVector2f pos_act = sfSprite_getPosition(duck->sprite);
 
     setTexture(duck->sprite, duck->duck, sfFalse);
     sfSprite_setTextureRect(duck->sprite, duck->rect);
-    pos_act.x += speed;
+    pos_act.x += duck->speed;
     duck->time = sfClock_getElapsedTime(duck->clock);
     if (sfTime_asMilliseconds(duck->time) >= 100) {
         move_rect(&duck->rect, 110, 330);

@@ -14,6 +14,7 @@ duck_t init_duck_struct(duck_t duck)
     duck.clock = sfClock_create();
     duck.score = 0;
     duck.life = 3;
+    duck.speed = 10;
     duck.rect = (sfIntRect){0, 0, 110, 110};
 
     return duck;
@@ -41,6 +42,6 @@ pict_t init_pictures_struct(pict_t pic)
     pic.sprite_back = sfSprite_create();
     pic.background = setT_fromfile("./img/background.png", NULL);
     pic.sprite_black_backgr = sfSprite_create();
-    pic.black_back = ("img/black_background.jpg", NULL);
+    pic.black_back = setT_fromfile("./img/black_background.jpg", NULL);
     return pic;
 }

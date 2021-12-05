@@ -43,6 +43,7 @@
 
     typedef struct duck_s
     {
+        int speed;
         int score;
         int life;
         sfTime time;
