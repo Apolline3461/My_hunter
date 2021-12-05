@@ -21,6 +21,16 @@
     #define setPosS sfSprite_setPosition
     #define spritetar opt->target_sprite
 
+    typedef struct menu_s
+    {
+        sfSprite *sprite_menu;
+        sfTexture *menu;
+        sfFont *font_menu;
+        sfText *enter;
+        sfText *quit;
+
+    } menu_t;
+
     typedef struct pictures_s
     {
         sfSprite *sprite_back;
@@ -42,6 +52,8 @@
         pict_t pic;
         sfSprite *target_sprite;
         sfTexture *target;
+        int menu;
+        menu_t structM;
 
     }opt_t;
 
@@ -56,7 +68,6 @@
         sfSprite *sprite;
         sfTexture *duck;
 
-
     }duck_t;
 
     duck_t init_duck_struct(duck_t duck);
@@ -69,6 +80,8 @@
     char *int_to_string(int score);
     void game_loop(duck_t *duck, opt_t *option);
     void end_loop(opt_t *opt, duck_t *duck);
+    void display_backgr(opt_t *option);
+    void display_menu(opt_t *op);
     void display_backgr(opt_t *option);
 
 #endif

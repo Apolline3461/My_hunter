@@ -23,11 +23,8 @@ void game_loop(duck_t *duck, opt_t *option)
     sfRenderWindow_display(option->window);
 }
 
-void end_loop(opt_t *opt, duck_t *duck)
+void analyse_event_of_end(opt_t *opt, duck_t *duck)
 {
-    sfRenderWindow_setMouseCursorVisible(opt->window, sfTrue);
-    sfText_setPosition(opt->score, (sfVector2f){380, 300});
-    sfText_setCharacterSize(opt->score, 40);
     while (sfRenderWindow_pollEvent(opt->window, &opt->event)) {
         if (opt->event.type == sfEvtClosed)
             sfRenderWindow_close(opt->window);
@@ -42,6 +39,14 @@ void end_loop(opt_t *opt, duck_t *duck)
             opt->event.key.code == sfKeyQ)
             sfRenderWindow_close(opt->window);
     }
+}
+
+void end_loop(opt_t *opt, duck_t *duck)
+{
+    sfRenderWindow_setMouseCursorVisible(opt->window, sfTrue);
+    sfText_setPosition(opt->score, (sfVector2f){380, 300});
+    sfText_setCharacterSize(opt->score, 40);
+    analyse_event_of_end(opt, duck);
     sfRenderWindow_clear(opt->window, sfTransparent);
     sfRenderWindow_drawSprite(opt->window, opt->pic.sprite_black_backgr, NULL);
     sfText_setString(opt->end_text, "Well done ! Your score is:");

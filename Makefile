@@ -9,7 +9,8 @@ SRC	=	main.c \
 		my_duck.c \
 		init_struct.c \
 		score.c \
-		game_loop.c
+		game_loop.c \
+		display_back.c
 
 NAME	=	my_hunter
 

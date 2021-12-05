@@ -23,22 +23,22 @@ void destroy_my_sprite(duck_t *duck, opt_t *op)
     sfFont_destroy(op->font);
     sfText_destroy(op->score);
     sfSprite_destroy(op->target_sprite);
-}
-
-void display_backgr(opt_t *option)
-{
-    setTexture(option->pic.sprite_back, option->pic.background, sfFalse);
-    sfRenderWindow_clear(option->window, sfTransparent);
-    sfRenderWindow_drawSprite(option->window, option->pic.sprite_back, NULL);
+    sfSprite_destroy(op->structM.sprite_menu);
+    sfFont_destroy(op->structM.font_menu);
+    sfText_destroy(op->structM.enter);
+    sfText_destroy(op->structM.quit);
 }
 
 void open_win(opt_t *option, duck_t *duck)
 {
     while (sfRenderWindow_isOpen(option->window)) {
-        if (duck->life != 0)
-            game_loop(duck, option);
-        else
-            end_loop(option, duck);
+        if (option->menu == 1) {
+            if (duck->life != 0)
+                game_loop(duck, option);
+            else
+                end_loop(option, duck);
+        } else
+            display_menu(option);
     }
 }
 
