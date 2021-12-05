@@ -33,6 +33,7 @@ void end_loop(opt_t *opt)
             sfRenderWindow_close(opt->window);
     }
     sfRenderWindow_clear(opt->window, sfTransparent);
+    sfRenderWindow_drawSprite(opt->window, opt->pic.sprite_black_backgr, NULL);
     sfText_setString(opt->end_text, "Well done ! Your score is:");
     sfRenderWindow_drawText(opt->window, opt->end_text, NULL);
     sfRenderWindow_drawText(opt->window, opt->score, NULL);
